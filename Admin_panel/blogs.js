@@ -42,7 +42,7 @@ window.onload = async function() {
         
             <div class="blog-content">
             <img src ='${blog.imageUrl}'>
-               <p class='blog-desc'>${blog.description}</p>
+            <p class='blog-desc'>${blog.description}</p>
           <div class="blog-buttons" >
           <button class="blog-update-btn" data-index="${index}" data-id="${blog._id}">Update</button>
           <button class="blog-delete-btn" data-id="${blog._id}">Delete</button>
@@ -120,6 +120,11 @@ const getToken = () =>{
 }
 getToken()
 
+
+
+
+
+
 let currentBlogId;
 let index
 let blogId
@@ -141,10 +146,12 @@ document.addEventListener("click", async (event) => {
   }
 });
 
+const fetchAllBlogs = async () => {
+  // Implement your fetchAllBlogs function
+};
+
 const updateBlog = async (formData, blogId) => {
   try {
-   
-    console.log(formData)
     const token = JSON.parse(localStorage.getItem('token'));
     const response = await fetch(
       `http://localhost:5000/blogs/${blogId}`, 
@@ -156,19 +163,24 @@ const updateBlog = async (formData, blogId) => {
         body: formData,
       }
     );
+    
     if (!response.ok) {
       throw new Error("Failed to update blog");
     }
+
     fetchAllBlogs();
     updateBlogModel.style.display = "none";
   } catch (error) {
     console.error("Error updating blog:", error.message);
+    // Display an error message to the user
+    alert("Error updating blog. Please try again.");
   }
 };
 
 const openUpdateBlogModel = async (index, blogId) => {
   const token = JSON.parse(localStorage.getItem('token'));
   updateBlogModel.style.display = "block";
+  
   try {
     const response = await fetch(
       `http://localhost:5000/blogs/${blogId}`, {
@@ -177,6 +189,7 @@ const openUpdateBlogModel = async (index, blogId) => {
         }
       }
     );
+    
     if (!response.ok) {
       throw new Error("Failed to fetch blog details");
     }
@@ -185,42 +198,34 @@ const openUpdateBlogModel = async (index, blogId) => {
     console.log(blog);
     document.getElementById("title").value = blog.title;
     document.getElementById("description").value = blog.description;
-    document.getElementById('blogId').value= blogId
+    document.getElementById('blogId').value = blogId;
   } catch (error) {
     console.error("Error fetching blog details for update:", error.message);
+    // Display an error message to the user
+    alert("Error fetching blog details for update. Please try again.");
   }
 };
 
 updateBlogForm.addEventListener("submit", async (event) => {
   event.preventDefault();
-  let title= document.getElementById("title").value.trim()
-  // @ts-ignore
-  const description= document.getElementById("description").value.trim()
-  const image= document.getElementById("imageUrl").files[0]
-  const blogId= document.getElementById('blogId').value
-  let formData = new FormData()
-  formData.append('title', title);
-  formData.append('description', description);
-  formData.append('image', image);
-  const token = JSON.parse(localStorage.getItem('token'));
-  try {
-    
-    const response = await fetch(`http://localhost:5000/blogs/${blogId}`, { 
-      method: "PUT",
-      headers: {
-        "Authorization": `Bearer ${token}`,
-      },
-      body: formData,
-    });
+  let title = document.getElementById("title").value.trim();
+  let description = document.getElementById("description").value.trim();
+  const image = document.getElementById("imageUrl").files[0];
+  const blogId = document.getElementById("blogId").value;
 
-    if (!response.ok) {
-      throw new Error("Failed to update blog");
-    }
-    window.location.reload()
-  } catch (error) {
-    console.error("Error updating blog:", error.message);
+  let formData = new FormData();
+  formData.append("title", title);
+  formData.append("description", description);
+  formData.append("image", image);
+
+  // Logging FormData entries
+  for (let entry of formData.entries()) {
+    console.log(entry[0] + ": " + entry[1]);
   }
+
+  await updateBlog(formData, blogId);
 });
+
 
 
 
@@ -248,10 +253,11 @@ const deleteBlog = async (blogId) => {
     if (!response.ok) {
       throw new Error("Failed to delete blog");
     }
+    else{
+      return 'blog delete successfully!'
+    }
     
   } catch (error) {
     console.error("Error deleting blog:", error.message);
   }
 };
-
-

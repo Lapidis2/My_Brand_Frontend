@@ -7,12 +7,10 @@ document.addEventListener("DOMContentLoaded", function() {
     // @ts-ignore
     loginForm.addEventListener("submit", async (event) => {
         event.preventDefault();
-
-        // Reset error message
         // @ts-ignore
         errorElement.style.display = "none";
 
-        // Get email and password values
+
         // @ts-ignore
         const email = loginEmail.value.trim();
         // @ts-ignore
@@ -42,8 +40,6 @@ const loginUser = async (userData, errorElementId) => {
         const data = await response.json();
         const token = data.token;
         localStorage.setItem("token", JSON.stringify(token));
-
-        // Show success message
         const errorElement = document.getElementById(errorElementId);
         if (errorElement) {
             errorElement.style.display = "block";
@@ -54,8 +50,6 @@ const loginUser = async (userData, errorElementId) => {
                 errorElement.style.display = "none";
             }, 6000);
         }
-          
-        // Redirect to admin panel
         window.location.href = "Admin_panel/admin.html";
     } catch (err) {
         console.error(err.message);

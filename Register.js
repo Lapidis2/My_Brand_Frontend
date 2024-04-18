@@ -3,10 +3,11 @@ const email = document.getElementById("email");
 const password = document.getElementById("password");
 const confirmPassword = document.getElementById("cpassword");
 const nameField = document.getElementById("name");
-const err = document.querySelector(".err");
-//fetching data
+const errorElement = document.getElementById('error-message');
+
 
 // @ts-ignore
+
 registerForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -25,10 +26,26 @@ registerForm.addEventListener("submit", async (event) => {
         username: nameField.value,
     };
 
-  
+    function checkUserExist(){
+        const emailExist=userData.email;
+        if (emailExist) {
+            showError("Email already exists. Please use a different email address.");
+            return;
+        }
+        // @ts-ignore
+        checkUserExist(email)
+    }
+    
     await RegisterUser(userData)
   
-  
+    if (errorElement) {
+        errorElement.style.display = "block";
+        errorElement.style.backgroundColor = 'green';
+        errorElement.innerText = "Registration successfull!";
+
+        setTimeout(() => {
+            errorElement.style.display = "none";
+        }, 6000);}
 });
 
 function showError(message) {
@@ -68,6 +85,7 @@ function showFail(message) {
     // @ts-ignore
     err.innerText = message;
 }
+
 
 
 

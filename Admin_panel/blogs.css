@@ -6,15 +6,21 @@
         color: #fff;
         }
         .blog {
-            /* display: flex; */
+            
             justify-content: space-between;
             gap: 20px;
             padding: 10px;
-            background-color: #252734;
+            background-color: #56565b;
             padding: 20px;
             border-radius: 5px;
             margin-bottom: 20px;
           }
+          @media screen and (max-width: 450px) {
+            .blog__list {
+                display: block;
+            }
+        }
+           
           
           img {
             width: 100px; 
