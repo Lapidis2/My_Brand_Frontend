@@ -27,8 +27,11 @@ window.onload = async function() {
         throw new Error('Failed to fetch blogs');
       }
       const blogsArr = await response.json();
-
+      // blogsArr.forEach(blogs=>{
+      //   console.log(blogs.title)
+      // })
       const blogsData = blogsArr.blogs;
+      console.log(blogsData)
       const blogList = document.querySelector('.blog__list');
       // @ts-ignore
       blogList.innerHTML = ''; 
@@ -42,7 +45,9 @@ window.onload = async function() {
         
             <div class="blog-content">
             <img src ='${blog.imageUrl}'>
+            <h1 class="title">${blog.title}</h1>
             <p class='blog-desc'>${blog.description}</p>
+
           <div class="blog-buttons" >
           <button class="blog-update-btn" data-index="${index}" data-id="${blog._id}">Update</button>
           <button class="blog-delete-btn" data-id="${blog._id}">Delete</button>
@@ -58,16 +63,15 @@ window.onload = async function() {
     } catch (error) {
       console.error('Error fetching blogs:', error.message);
     }
-};
+}
 
-//create blog
-
-document.getElementById("newBlogForm").addEventListener('submit',  async (event)=>{
-    event.preventDefault()
+document.getElementById("newBlogForm").addEventListener('submit',  async (e)=>{
+    e.preventDefault()
     // @ts-ignore
     let title= document.getElementById("blogtitle").value.trim()
     // @ts-ignore
     const description= document.getElementById("blogdesc").value.trim()
+    console.log(title,description)
     const image= document.getElementById("blogimage").files[0]
     let formData = new FormData()
     formData.append('title', title);
@@ -79,10 +83,15 @@ document.getElementById("newBlogForm").addEventListener('submit',  async (event)
       let token = getToken()
         fetch('http://localhost:5000/blogs', {
             method: 'POST',
-            body: formData,
+
+            body: JSON.stringify({
+              title:`${title}`,
+              description:`${description}`,
+              image:`${image}`
+            }),
             headers: {
-                'Authorization': `Bearer ${token}`
-            
+                'Authorization': `Bearer ${token}`,
+                "Content-type":"application/json"
             }
        
         }).then(response =>{
@@ -121,17 +130,9 @@ const getToken = () =>{
 getToken()
 
 
-
-
-
-
 let currentBlogId;
 let index
 let blogId
-
-
-
-
 
 document.addEventListener("click", async (event) => {
   if (event.target.classList.contains("blog-update-btn")) {
@@ -147,10 +148,19 @@ document.addEventListener("click", async (event) => {
 });
 
 const fetchAllBlogs = async () => {
-  // Implement your fetchAllBlogs function
 };
 
 const updateBlog = async (formData, blogId) => {
+  let title= document.getElementById("title").value.trim()
+  // @ts-ignore
+  const description= document.getElementById("description").value.trim()
+  console.log(title,description)
+  const image= document.getElementById("imageUrl").files[0]
+  formData = new FormData()
+  formData.append('title', title);
+  formData.append('description', description);
+ 
+  formData.append('image', image);
   try {
     const token = JSON.parse(localStorage.getItem('token'));
     const response = await fetch(
@@ -158,9 +168,14 @@ const updateBlog = async (formData, blogId) => {
       {
         method: "PUT",
         headers: {
+           "Content-Type":"application/json",
           "Authorization": `Bearer ${token}`, 
         },
-        body: formData,
+        body: JSON.stringify({
+          title:`${title}`,
+          description:`${description}`,
+          image:`${image}`
+        }),
       }
     );
     
@@ -172,7 +187,6 @@ const updateBlog = async (formData, blogId) => {
     updateBlogModel.style.display = "none";
   } catch (error) {
     console.error("Error updating blog:", error.message);
-    // Display an error message to the user
     alert("Error updating blog. Please try again.");
   }
 };
@@ -201,7 +215,7 @@ const openUpdateBlogModel = async (index, blogId) => {
     document.getElementById('blogId').value = blogId;
   } catch (error) {
     console.error("Error fetching blog details for update:", error.message);
-    // Display an error message to the user
+   
     alert("Error fetching blog details for update. Please try again.");
   }
 };
@@ -218,7 +232,6 @@ updateBlogForm.addEventListener("submit", async (event) => {
   formData.append("description", description);
   formData.append("image", image);
 
-  // Logging FormData entries
   for (let entry of formData.entries()) {
     console.log(entry[0] + ": " + entry[1]);
   }

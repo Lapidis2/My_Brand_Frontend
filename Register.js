@@ -85,10 +85,6 @@ function showFail(message) {
     // @ts-ignore
     err.innerText = message;
 }
-
-
-
-
 const RegisterUser= async (userData) =>{
     fetch("http://localhost:5000/auth/register", {
         method: 'POST',

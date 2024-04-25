@@ -36,9 +36,7 @@
             <li>
                 <a href="#articles"> <i class="fa-solid fa-blog"></i>article</a>
             </li>
-            <li>
-                <a href="Admin_panel/admin.html"> <i class="fa-solid fa-book"></i>Projects</a>
-            </li>
+          
             <li>
                 <a href="#contact"><i class="fa-solid fa-address-book"></i>Contact</a>
 
@@ -80,7 +78,7 @@
                 <a href="#contact" class="btn hire-me">Hire Me.</a>
               </div>
               <div class="home-img padd-15">
-                <img src="./images/IMG-20240129-WA0000.jpg" alt="My-Pic" />
+                <img  class="myprofile" src="./images/IMG-20240129-WA0000.jpg" alt="My-Pic" />
               </div>
             </div>
           </div>
@@ -174,19 +172,16 @@
         <!-- ................about section end  ..........-->
         <!-- ................BLOGS section start ..........-->
         <section id="articles" class="service section">
-          <div class="container">
             <div class="row">
               <div class="section-title padd-15">
                 <h2>ARTICLES</h2>
+                <div id="myblogs"></div>
               </div>
             </div>
            
-              
-             
-              
-              <!-- ......service item start..... -->
-            </div>
-          
+            
+           
+        
         </section>
         <!-- ................BLOGS section end  ..........-->
     
@@ -312,29 +307,7 @@
     <!-- -------------- js file............. -->
 
     <script src="main.js"></script>
-    <!-- <script>
-     let signInBtn=document.getElementById("signInBtn");
-     let signUpBtn=document.getElementById("signUpBtn");
-     let nameField=document.getElementById("userNameField");
-     let Title=document.getElementById("title");
     
-     signInBtn.onclick=function(){
-      nameField.style.display='none'; 
-  
-       Title.innerHTML="Sign In"
-       signUpBtn.classList.add("disable")
-       signInBtn.classList.remove("disable")
-
-    }
-    signUpBtn.onclick=function(){
-      nameField.style.display='flex'; 
-      
-       Title.innerHTML="Sign Up"
-
-    }
-</script> -->
-      <!-- <script src="./validateform.js"></script> -->
-      <!-- <script src="./validateinput.js"></script> -->
       <script src="./login.js"></script>
   </body>
 </html>

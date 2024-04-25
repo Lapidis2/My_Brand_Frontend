@@ -1,5 +1,4 @@
 const wrapper =document.querySelector('.wrapper');
-// const loginLink =document.querySelector('.login-link');
 const registerLink =document.querySelector('.register-link');
 const navLinks = document.getElementById('nav-links');
 // @ts-ignore
@@ -11,7 +10,6 @@ const backToHomeBtn = document.getElementById('backToHomeBtn');
 
 // @ts-ignore
 backToHomeBtn.addEventListener('click', () => {
-    // Redirect to home page 
     window.location.href = 'index.html'; 
 });
 
@@ -33,6 +31,51 @@ toggleBtn.onclick = ()=>{
         // @ts-ignore
         navLinks.style.display = 'block';
 }}
+
+
+window.onload = async function() {
+    
+
+    try {
+      const response = await fetch('http://localhost:5000/blogs');
+      if (!response.ok) {
+        throw new Error('Failed to fetch blogs');
+      }
+      const blogsArr = await response.json();
+     
+      const blogsData = blogsArr.blogs;
+      console.log(blogsData)
+      const blogList = document.getElementById('myblogs');
+      // @ts-ignore
+      blogList.innerHTML = ''; 
+
+      blogsData.forEach((blog) => {
+        const div = document.createElement('div');
+        
+        
+        div.innerHTML = `
+        <div class="blog"
+        
+            <div class="blog-content">
+            <img src ='${blog.imageUrl}'>
+            <h1 class="title">${blog.title}</h1>
+            <p class='blog-desc'>${blog.description}</p>
+          </div>
+          </div>
+        `
+        // @ts-ignore
+        blogList.appendChild(div);
+      });
+
+      
+    } catch (error) {
+      console.error('Error fetching blogs:', error.message);
+    }
+}
+
+
+    
+
 
  
 
