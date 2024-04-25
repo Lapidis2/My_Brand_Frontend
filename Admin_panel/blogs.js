@@ -44,7 +44,7 @@ window.onload = async function() {
         <div class="blog"
         
             <div class="blog-content">
-            <img src ='${blog.imageUrl}'>
+            <img src =${blog.imageUrl}>
             <h1 class="title">${blog.title}</h1>
             <p class='blog-desc'>${blog.description}</p>
 
@@ -57,6 +57,7 @@ window.onload = async function() {
         `
         // @ts-ignore
         blogList.appendChild(div);
+        console.log(imageUrl)
       });
 
       
@@ -77,7 +78,7 @@ document.getElementById("newBlogForm").addEventListener('submit',  async (e)=>{
     formData.append('title', title);
     formData.append('description', description);
    
-    formData.append('image', image);
+    formData.append('image',image);
     try { 
     
       let token = getToken()
@@ -85,9 +86,9 @@ document.getElementById("newBlogForm").addEventListener('submit',  async (e)=>{
             method: 'POST',
 
             body: JSON.stringify({
-              title:`${title}`,
-              description:`${description}`,
-              image:`${image}`
+              title,
+              description,
+              image: imageUrl
             }),
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -99,7 +100,8 @@ document.getElementById("newBlogForm").addEventListener('submit',  async (e)=>{
                 throw Error("Network Error")
             }
   
-   
+            console.log(Array.from(formData.entries()));
+            console.log(image)
     notifyMsg.textContent = "Blog created successfully!";
     notifyMsg.style.display = "block";
    

@@ -28,7 +28,7 @@
         <div class="new-blog__form">
           <span id="notify_msg">Blog Added Successfully</span>
           
-          <form action="post" id="newBlogForm">
+          <form enctype="multipart/form-data" action="post" id="newBlogForm">
             <input type="file" name="image" placeholder="file"  id="blogimage"/>
             <input type="text" name="title" placeholder="Title"  id="blogtitle"required />
             <textarea name="description" placeholder="Description" id="blogdesc" required></textarea >
