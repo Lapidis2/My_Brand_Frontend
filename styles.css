@@ -43,6 +43,7 @@ body{
     }
 }
 
+
 #myblogs{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -347,10 +348,11 @@ line-height: 40px;
     justify-content: space-between;
     gap: 20px;
     padding: 10px;
-    background-color: #56565b;
+    background-color:rgb(189, 181, 181);
     padding: 20px;
     border-radius: 5px;
     margin-bottom: 20px;
+    box-shadow: 0 0 6px 6px rgb(225, 219, 219);
   }
 .service .service-item .service-item-inner{
 background-color: var(--bg-black-100);
@@ -550,11 +552,16 @@ font-size:10px ;
     display: block;
  }
  
-@media (max-width:450px) {
+@media (max-width:600px) {
     #myblogs{
     display: block;
+    
+}
+#myblogs img{
+width: 100%;
 }
   
+
  #toggle-btn{
     display: flex;
     color: red;

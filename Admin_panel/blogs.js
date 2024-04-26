@@ -84,15 +84,10 @@ document.getElementById("newBlogForm").addEventListener('submit',  async (e)=>{
       let token = getToken()
         fetch('http://localhost:5000/blogs', {
             method: 'POST',
-
-            body: JSON.stringify({
-              title,
-              description,
-              image: imageUrl
-            }),
+               body:formData,
             headers: {
-                'Authorization': `Bearer ${token}`,
-                "Content-type":"application/json"
+                'Authorization': `Bearer ${token}`
+               
             }
        
         }).then(response =>{
@@ -269,7 +264,7 @@ const deleteBlog = async (blogId) => {
       throw new Error("Failed to delete blog");
     }
     else{
-      return 'blog delete successfully!'
+      window.location.reload()
     }
     
   } catch (error) {
