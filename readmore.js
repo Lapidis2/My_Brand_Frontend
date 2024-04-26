@@ -13,6 +13,7 @@ window.addEventListener("DOMContentLoaded", async ()=>{
         return response.json()
     }).then(data=>{
         blog=data
+        // @ts-ignore
         blogContainer.innerHTML=`
         <img src="${blog.imageUrl}">
         <h3>${blog.title}</h3>
