@@ -86,7 +86,7 @@ function showFail(message) {
     err.innerText = message;
 }
 const RegisterUser= async (userData) =>{
-    fetch("http://localhost:5000/auth/register", {
+    fetch("https://my-brand-backend-tsc3.onrender.com/auth/register", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

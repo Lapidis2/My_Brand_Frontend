@@ -22,7 +22,7 @@ window.onload = async function() {
     
 
     try {
-      const response = await fetch('http://localhost:5000/blogs');
+      const response = await fetch('https://my-brand-backend-tsc3.onrender.com/blogs');
       if (!response.ok) {
         throw new Error('Failed to fetch blogs');
       }
@@ -82,7 +82,7 @@ document.getElementById("newBlogForm").addEventListener('submit',  async (e)=>{
     try { 
     
       let token = getToken()
-        fetch('http://localhost:5000/blogs', {
+        fetch('https://my-brand-backend-tsc3.onrender.com/blogs', {
             method: 'POST',
                body:formData,
             headers: {
@@ -161,7 +161,7 @@ const updateBlog = async (formData, blogId) => {
   try {
     const token = JSON.parse(localStorage.getItem('token'));
     const response = await fetch(
-      `http://localhost:5000/blogs/${blogId}`, 
+      `https://my-brand-backend-tsc3.onrender.com/blogs/${blogId}`, 
       {
         method: "PUT",
         headers: {
@@ -194,7 +194,7 @@ const openUpdateBlogModel = async (index, blogId) => {
   
   try {
     const response = await fetch(
-      `http://localhost:5000/blogs/${blogId}`, {
+      `https://my-brand-backend-tsc3.onrender.com/blogs/${blogId}`, {
         headers: {
           "Authorization": `Bearer ${token}`,
         }
@@ -252,7 +252,7 @@ const deleteBlog = async (blogId) => {
     }
 
     const response = await fetch(
-      `http://localhost:5000/blogs/${blogId}`,
+      `https://my-brand-backend-tsc3.onrender.com/blogs/${blogId}`,
       {
         method: "DELETE",
         headers: {
@@ -271,3 +271,23 @@ const deleteBlog = async (blogId) => {
     console.error("Error deleting blog:", error.message);
   }
 };
+
+const token=localStorage.getItem('token')
+const getUserIdFromToken = token => {
+  const decodedToken = JSON.parse(decodeURIComponent(atob(token.split('.')[1].replace('-', '+').replace('_', '/'))));
+  return decodedToken.userId || null;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+

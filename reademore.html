@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles</title>
+    <link rel="stylesheet" href="../readmore.css">
+    <script src="readMore.js" defer></script>
+</head>
+<body>
+  
+    <div id="theBlog">
+        <h1></h1>
+        <div>
+            <img src="" alt="" id="image">
+        </div>
+        <div id="singleContent"></div>
+        <div id="likesCont">
+            <div id="likesNumber"></div>
+            <button id="like">Like</button>
+        </div>
+        
+        <div id="commentSection"><textarea name="comment" placeholder="comment here"></textarea>
+            <button id="comment">Comment</button>
+           
+        </div>
+        <div id="commentsContainer">
+            <h1>Comments:</h1>
+            <button onclick="goBack()">Go Back</button>
+        </div>
+        
+    </div>
+  
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+</body>
+</html>

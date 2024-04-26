@@ -37,7 +37,7 @@ window.onload = async function() {
     
 
     try {
-      const response = await fetch('http://localhost:5000/blogs');
+      const response = await fetch('https://my-brand-backend-tsc3.onrender.com/blogs');
       if (!response.ok) {
         throw new Error('Failed to fetch blogs');
       }
@@ -60,6 +60,7 @@ window.onload = async function() {
             <img src ='${blog.imageUrl}'>
             <h1 class="title">${blog.title}</h1>
             <p class='blog-desc'>${blog.description}</p>
+            <a href="reademore.html?id=${blog._id} ">ReadMore</a>
           </div>
           </div>
         `
