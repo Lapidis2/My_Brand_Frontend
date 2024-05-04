@@ -85,8 +85,6 @@ document.getElementById("newBlogForm").addEventListener('submit',  async (e)=>{
         
             headers: {
                 'Authorization': `Bearer ${token}`,
-                "Content-Type":"application/json"
-               
             },
             body:formData
        
