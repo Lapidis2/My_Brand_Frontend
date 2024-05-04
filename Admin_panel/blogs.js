@@ -156,7 +156,6 @@ const updateBlog = async (formData, blogId) => {
   formData.append('description', description);
  
   formData.append('image', image);
-  console.log(formData)
   try {
     const token = JSON.parse(localStorage.getItem('token'));
     const response = await fetch(
@@ -164,7 +163,7 @@ const updateBlog = async (formData, blogId) => {
       {
         method: "PUT",
         headers: {
-        
+           "Content-Type":"application/json",
           "Authorization": `Bearer ${token}`, 
         },
         body: JSON.stringify({
