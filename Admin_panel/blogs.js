@@ -87,7 +87,8 @@ document.getElementById("newBlogForm").addEventListener('submit',  async (e)=>{
                 'Authorization': `Bearer ${token}`,
                 "Content-Type":"application/json"
                
-            }
+            },
+            body:formData
        
         }).then(response =>{
             if(!response.ok){
