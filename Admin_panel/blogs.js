@@ -27,13 +27,11 @@ window.onload = async function() {
         throw new Error('Failed to fetch blogs');
       }
       const blogsArr = await response.json();
-      // blogsArr.forEach(blogs=>{
-      //   console.log(blogs.title)
-      // })
+     
       const blogsData = blogsArr.blogs;
       console.log(blogsData)
       const blogList = document.querySelector('.blog__list');
-      // @ts-ignore
+    
       blogList.innerHTML = ''; 
 
       blogsData.forEach((blog) => {
@@ -57,7 +55,7 @@ window.onload = async function() {
         `
         // @ts-ignore
         blogList.appendChild(div);
-        console.log(imageUrl)
+       
       });
 
       
@@ -68,9 +66,9 @@ window.onload = async function() {
 
 document.getElementById("newBlogForm").addEventListener('submit',  async (e)=>{
     e.preventDefault()
-    // @ts-ignore
+    
     let title= document.getElementById("blogtitle").value.trim()
-    // @ts-ignore
+   
     const description= document.getElementById("blogdesc").value.trim()
     console.log(title,description)
     const image= document.getElementById("blogimage").files[0]
@@ -86,7 +84,7 @@ document.getElementById("newBlogForm").addEventListener('submit',  async (e)=>{
             method: 'POST',
                body:formData,
             headers: {
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${"token"}`
                
             }
        
@@ -158,6 +156,7 @@ const updateBlog = async (formData, blogId) => {
   formData.append('description', description);
  
   formData.append('image', image);
+  console.log(formData)
   try {
     const token = JSON.parse(localStorage.getItem('token'));
     const response = await fetch(
@@ -165,14 +164,15 @@ const updateBlog = async (formData, blogId) => {
       {
         method: "PUT",
         headers: {
-           "Content-Type":"application/json",
+        
           "Authorization": `Bearer ${token}`, 
         },
-        body: JSON.stringify({
-          title:`${title}`,
-          description:`${description}`,
-          image:`${image}`
-        }),
+        // body: JSON.stringify({
+        //   title:`${title}`,
+        //   description:`${description}`,
+        //   image:`${image}`
+        // }),
+        body: formData,
       }
     );
     
