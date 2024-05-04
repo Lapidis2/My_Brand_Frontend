@@ -82,9 +82,10 @@ document.getElementById("newBlogForm").addEventListener('submit',  async (e)=>{
       let token = getToken()
         fetch('https://my-brand-backend-tsc3.onrender.com/blogs', {
             method: 'POST',
-               body:formData,
+        
             headers: {
-                'Authorization': `Bearer ${"token"}`
+                'Authorization': `Bearer ${"token"}`,
+                "Content-Type":"application/json"
                
             }
        
