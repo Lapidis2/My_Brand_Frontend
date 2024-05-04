@@ -55,7 +55,7 @@ window.onload = async function() {
         `
         // @ts-ignore
         blogList.appendChild(div);
-       
+        console.log(imageUrl)
       });
 
       
@@ -167,12 +167,11 @@ const updateBlog = async (formData, blogId) => {
         
           "Authorization": `Bearer ${token}`, 
         },
-        // body: JSON.stringify({
-        //   title:`${title}`,
-        //   description:`${description}`,
-        //   image:`${image}`
-        // }),
-        body: formData,
+        body: JSON.stringify({
+          title:`${title}`,
+          description:`${description}`,
+          image:`${image}`
+        }),
       }
     );
     
