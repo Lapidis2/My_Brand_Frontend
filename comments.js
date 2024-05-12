@@ -4,7 +4,7 @@ function addComment(){
     //@ts-ignore
     const text= document.getElementById("commentText").value.trim()
     const blogId= window.location.href.split("=")[1]
-    fetch(`http://localhost:5000/comments/createComment/${blogId}/user/${userid}`, {
+    fetch(`https://my-brand-backend-tsc3.onrender.com/comments/createComment/${blogId}/user/${userid}`, {
         headers:{
             "Content-Type": "application/json"
         },
@@ -29,7 +29,7 @@ likeBtn?.addEventListener("click", async()=>{
     const userid=JSON.parse(localStorage.getItem("userid"))
     //@ts-ignore
     const blogId= window.location.href.split("=")[1]
-    fetch(`http://localhost:5000/like/${blogId}/user/${userid}`, {
+    fetch(`https://my-brand-backend-tsc3.onrender.com/like/${blogId}/user/${userid}`, {
         headers:{
             "Content-Type": "application/json"
         },
