@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 
 var blog;
@@ -13,17 +14,22 @@ window.addEventListener("DOMContentLoaded", async ()=>{
         return response.json()
     }).then(data=>{
         blog=data
-        // @ts-ignore
+
         blogContainer.innerHTML=`
         <img src="${blog.imageUrl}">
         <h3>${blog.title}</h3>
         <p>${blog.description}</p>
-
         `
-        // console.log(data)
-        
-        console.log(blog)
+        likesStat(blog.likes.length)
+         console.log(blog)
     }).catch(err =>{
         console.log(err)
     })
 })
+
+
+
+function likesStat(n){
+    const blogNumber= document.getElementById("likesNumber")
+    blogNumber.innerHTML=n
+}

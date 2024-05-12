@@ -40,6 +40,7 @@ const loginUser = async (userData, errorElementId) => {
         const data = await response.json();
         const token = data.token;
         localStorage.setItem("token", JSON.stringify(token));
+        localStorage.setItem("userid", JSON.stringify("6640d9098856745b86fb865f"))
         const errorElement = document.getElementById(errorElementId);
         if (errorElement) {
             errorElement.style.display = "block";
