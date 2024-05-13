@@ -24,13 +24,14 @@ window.addEventListener("DOMContentLoaded", async ()=>{
         let comments = blog.comment;
         comments.forEach(comment => {
             let commentsContainer = document.getElementById('commentsContainer'); 
+            let userElement = document.createElement('div');
             let commentDiv = document.createElement('div');
             let commentText = document.createElement('div');
             let commentTime = document.createElement('div');
-            
+            userElement.textContent = `User: ${comment.user}`;
             commentText.textContent = comment.text;
             commentTime.textContent = `Created at: ${comment.createdAt}`;
-            
+            commentDiv.appendChild(userElement);
             commentDiv.appendChild(commentText);
             commentDiv.appendChild(commentTime);
             commentsContainer.appendChild(commentDiv);
