@@ -103,7 +103,7 @@ const RegisterUser= async (userData) =>{
     }).then(async data =>{
         const token =  data.token;
         localStorage.setItem("token", JSON.stringify(token));
-        window.location.href = "../index.html";
+        window.location.href = "../login.html";
         console.log(data)
     }).catch(err =>{
     showError(err.message)

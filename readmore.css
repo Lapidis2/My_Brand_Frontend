@@ -58,20 +58,23 @@ textarea{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color:#cb858f;
+    margin-bottom: 20px;
+    width: 400px;
 }
 
 
 #commentsContainer button {
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #cb858f;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-#commentsContainer button:hover {
+commentsContainer button:hover {
     background-color: #0056b3;
 }
 button{
