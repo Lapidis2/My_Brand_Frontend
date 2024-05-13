@@ -33,3 +33,6 @@ function likesStat(n){
     const blogNumber= document.getElementById("likesNumber")
     blogNumber.innerHTML=n
 }
+window.onload = function() {
+    location.reload(); 
+};
