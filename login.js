@@ -39,7 +39,7 @@ const loginUser = async (userData, errorElementId) => {
 
         const data = await response.json();
         const token = data.token;
-        const userId=data.user.Id;
+        const userId=data.userId;
         localStorage.setItem("token", JSON.stringify(token));
         localStorage.setItem("userId", JSON.stringify(userId))
         const errorElement = document.getElementById(errorElementId);
